@@ -17,7 +17,7 @@
 
 #include "XMPFiles/source/FormatSupport/SVG_Adapter.hpp"
 
-#include "third-party/expat/lib/expat.h"
+#include <expat.h>
 #include <string.h>
 
 using namespace std;

@@ -25,7 +25,7 @@
 #include "XMPFiles/source/XMPFiles_Impl.hpp"
 #include "XMPFiles/source/FormatSupport/SVG_Adapter.hpp"
 
-#include "third-party/zlib/zlib.h"
+#include <zlib.h>
 
 extern XMPFileHandler* SVG_MetaHandlerCTor( XMPFiles* parent );
 

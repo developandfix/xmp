@@ -17,7 +17,7 @@
 
 #include "XMPFiles/source/XMPFiles_Impl.hpp"
 
-#include "third-party/zlib/zlib.h"
+#include <zlib.h>
 
 // =================================================================================================
 

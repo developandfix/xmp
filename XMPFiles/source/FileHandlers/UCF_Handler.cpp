@@ -18,7 +18,7 @@
 
 #include "XMPFiles/source/FileHandlers/UCF_Handler.hpp"
 
-#include "third-party/zlib/zlib.h"
+#include <zlib.h>
 
 #include <time.h>
 
