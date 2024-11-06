@@ -204,7 +204,7 @@ target_include_directories(XMPFiles PUBLIC
 		$<BUILD_INTERFACE:${XMPROOT_DIR}/public/include/client-glue>
 		$<BUILD_INTERFACE:${XMPROOT_DIR}/XMPFilesPlugins/api/source>
 		$<BUILD_INTERFACE:${RESOURCE_ROOT}/${XMP_PLATFORM_SHORT}>
-		$<INSTALL_INTERFACE:${XMPFILES_INCLUDE_DIR}>)
+		$<INSTALL_INTERFACE:${XMP_INSTALL_INCLUDE_DIR}>)
 
 if (CMAKE_WINUNIVERSAL)
 	add_definitions(-DWIN_UNIVERSAL_ENV -DWIN_ENV)
@@ -216,7 +216,5 @@ else()
 	target_link_libraries(XMPFiles PRIVATE ${XMPFilesLibraries})
 endif()
 
-install(FILES ${PUBLIC_HEADER} DESTINATION include/XMPFiles)
-install(FILES ${PUBLIC_HEADER_CLIENTGLUE} DESTINATION include/XMPFiles/client-glue)
 
 
