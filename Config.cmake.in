@@ -1,0 +1,11 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(EXPAT)
+find_dependency(ZLIB)
+
+set_and_check(XMPCORE_INCLUDE_DIR "@PACKAGE_XMPCORE_INCLUDE_INSTALL_DIR@")
+set_and_check(XMPFILES_INCLUDE_DIR "@PACKAGE_XMPFILES_INCLUDE_INSTALL_DIR@")
+
+include("${CMAKE_CURRENT_LIST_DIR}/XMPTargets.cmake")

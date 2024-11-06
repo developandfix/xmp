@@ -199,11 +199,12 @@ list(APPEND SOURCE_FILES
 
 add_library(XMPFiles ${SOURCE_FILES})
 target_include_directories(XMPFiles PUBLIC
-		${XMPROOT_DIR}
-		${XMPROOT_DIR}/public/include
-		${XMPROOT_DIR}/public/include/client-glue
-		${XMPROOT_DIR}/XMPFilesPlugins/api/source
-		${RESOURCE_ROOT}/${XMP_PLATFORM_SHORT})
+		$<BUILD_INTERFACE:${XMPROOT_DIR}>
+		$<BUILD_INTERFACE:${XMPROOT_DIR}/public/include>
+		$<BUILD_INTERFACE:${XMPROOT_DIR}/public/include/client-glue>
+		$<BUILD_INTERFACE:${XMPROOT_DIR}/XMPFilesPlugins/api/source>
+		$<BUILD_INTERFACE:${RESOURCE_ROOT}/${XMP_PLATFORM_SHORT}>
+		$<INSTALL_INTERFACE:${XMPFILES_INCLUDE_DIR}>)
 
 if (CMAKE_WINUNIVERSAL)
 	add_definitions(-DWIN_UNIVERSAL_ENV -DWIN_ENV)
@@ -214,4 +215,8 @@ if (APPLE)
 else()
 	target_link_libraries(XMPFiles PRIVATE ${XMPFilesLibraries})
 endif()
+
+install(FILES ${PUBLIC_HEADER} DESTINATION include/XMPFiles)
+install(FILES ${PUBLIC_HEADER_CLIENTGLUE} DESTINATION include/XMPFiles/client-glue)
+
 

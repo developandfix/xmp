@@ -110,15 +110,19 @@ list(APPEND SOURCE_FILES
 
 add_library(XMPCore ${SOURCE_FILES})
 
+set(XMPCORE_INCLUDE_DIR include/XmpCore)
+set(XMPCOMMON_INCLUDE_DIR include/XMPCommon)
+
 target_include_directories(XMPCore PUBLIC
-		${XMPROOT_DIR}
-		${XMPROOT_DIR}/public/include
-		${XMPROOT_DIR}/third-party/expat/public/lib
-		${RESOURCE_ROOT}/${XMP_PLATFORM_SHORT})
+	$<BUILD_INTERFACE:${XMPROOT_DIR}>
+	$<BUILD_INTERFACE:${XMPROOT_DIR}/public/include>
+	$<BUILD_INTERFACE:${RESOURCE_ROOT}/${XMP_PLATFORM_SHORT}>
+	$<INSTALL_INTERFACE:${XMPCORE_INCLUDE_DIR}>
+	$<INSTALL_INTERFACE:${XMPCOMMON_INCLUDE_DIR}>)
 if (WIN32)
-	target_include_directories(XMPCore PUBLIC ${RESOURCE_ROOT}/win)
+	target_include_directories(XMPCore PUBLIC $<BUILD_INTERFACE:${RESOURCE_ROOT}/win>)
 else ()
-	target_include_directories(XMPCore PUBLIC ${RESOURCE_ROOT}/${XMP_PLATFORM_SHORT})
+	target_include_directories(XMPCore PUBLIC $<BUILD_INTERFACE:${RESOURCE_ROOT}/${XMP_PLATFORM_SHORT}>)
 endif ()
 
 set(XMPCoreLibraries expat)
@@ -129,3 +133,9 @@ elseif (WIN32)
 else()
 	target_link_libraries(XMPCore PRIVATE ${XMPCoreLibraries})
 endif()
+
+
+install(FILES ${PUBLIC_HEADER_FILES} ${PUBLIC_XMPCORE_HEADERS} ${XMPROOT_DIR}/public/include/XMP_Environment.h DESTINATION ${XMPCORE_INCLUDE_DIR})
+install(FILES ${PUBLIC_XMPCOMMON_HEADERS} ${XMPROOT_DIR}/public/include/XMP_Environment.h DESTINATION ${XMPCOMMON_INCLUDE_DIR})
+
+install(FILES ${PUBLIC_CLIENTGLUE_HEADER_FILES} DESTINATION ${XMPCORE_INCLUDE_DIR}/client-glue)
