@@ -3,6 +3,8 @@ project("xmp" LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+find_package(EXPAT REQUIRED)
+find_package(ZLIB REQUIRED)
 
 if (APPLE)
     if (APPLE_IOS)

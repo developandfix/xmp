@@ -210,7 +210,7 @@ target_include_directories(XMPFiles PUBLIC
 if (CMAKE_WINUNIVERSAL)
 	add_definitions(-DWIN_UNIVERSAL_ENV -DWIN_ENV)
 endif()
-set(XMPFilesLibraries XMPCore)
+set(XMPFilesLibraries XMPCore EXPAT::EXPAT ZLIB::ZLIB)
 if (APPLE)
 	target_link_libraries(XMPFiles PRIVATE ${XMPFilesLibraries} "-framework CoreFoundation -framework CoreServices")
 else()

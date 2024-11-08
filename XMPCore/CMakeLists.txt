@@ -124,7 +124,7 @@ else ()
 	target_include_directories(XMPCore PUBLIC $<BUILD_INTERFACE:${RESOURCE_ROOT}/${XMP_PLATFORM_SHORT}>)
 endif ()
 
-set(XMPCoreLibraries expat)
+set(XMPCoreLibraries EXPAT::EXPAT ZLIB::ZLIB)
 if (APPLE)
 	target_link_libraries(XMPCore PRIVATE ${XMPCoreLibraries} "-framework CoreFoundation -framework CoreServices")
 elseif (WIN32)
