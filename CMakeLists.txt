@@ -30,6 +30,12 @@ else()
     list(APPEND XMP_DEFINITIONS "-DXMP_StaticBuild=1")
 endif()
 
+if (CMAKE_CXX_BYTE_ORDER EQUAL "BIG_ENDIAN")
+    add_definitions(-DkBigEndianHost=1)
+else()
+    add_definitions(-DkBigEndianHost=0)
+endif()
+
 set(XMPROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(XMP_INSTALL_INCLUDE_DIR include/xmp)
 
